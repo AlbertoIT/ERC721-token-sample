@@ -20,8 +20,7 @@ contract MyNonFungibleToken is ERC721 {
     bytes4(keccak256('approve(address,uint256)')) ^
     bytes4(keccak256('transfer(address,uint256)')) ^
     bytes4(keccak256('transferFrom(address,address,uint256)')) ^
-    bytes4(keccak256('tokensOfOwner(address)')) ^
-    bytes4(keccak256('tokenMetadata(uint256,string)'));
+    bytes4(keccak256('tokensOfOwner(address)'));
 
 
   /*** DATA TYPES ***/
@@ -154,10 +153,6 @@ contract MyNonFungibleToken is ERC721 {
     }
 
     return result;
-  }
-
-  function tokenMetadata(uint256 _tokenId, string _preferredTransport) external view returns (string) {
-    return "";
   }
 
 
