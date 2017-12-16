@@ -26,6 +26,7 @@ contract MyNonFungibleToken is ERC721 {
   /*** DATA TYPES ***/
 
   struct Token {
+    address mintedBy;
     uint64 mintedAt;
   }
 
@@ -76,6 +77,7 @@ contract MyNonFungibleToken is ERC721 {
 
   function _createToken(address _owner) internal returns (uint256) {
     Token memory _token = Token({
+      mintedBy: _owner,
       mintedAt: uint64(now)
     });
     uint256 newTokenId = tokens.push(_token) - 1;
@@ -162,9 +164,10 @@ contract MyNonFungibleToken is ERC721 {
     return _createToken(msg.sender);
   }
 
-  function getToken(uint256 _tokenId) external view returns (uint64) {
+  function getToken(uint256 _tokenId) external view returns (address mintedBy, uint64 mintedAt) {
     Token memory token = tokens[_tokenId];
 
-    return token.mintedAt;
+    mintedBy = token.mintedBy;
+    mintedAt = token.mintedAt;
   }
 }
