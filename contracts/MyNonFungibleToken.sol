@@ -97,7 +97,7 @@ contract MyNonFungibleToken is ERC721 {
     return ((_interfaceID == InterfaceSignature_ERC165) || (_interfaceID == InterfaceSignature_ERC721));
   }
 
-  function totalSupply() public view returns (uint) {
+  function totalSupply() public view returns (uint256) {
     return tokens.length;
   }
 
