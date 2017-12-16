@@ -166,4 +166,10 @@ contract MyNonFungibleToken is ERC721 {
   function mint() external returns (uint256) {
     return _createToken(msg.sender);
   }
+
+  function getToken(uint256 _tokenId) external view returns (uint64) {
+    Token memory token = tokens[_tokenId];
+
+    return token.mintedAt;
+  }
 }
