@@ -132,20 +132,20 @@ contract MyNonFungibleToken is ERC721 {
   }
 
   function tokensOfOwner(address _owner) external view returns (uint256[]) {
-    uint256 tokenCount = balanceOf(_owner);
+    uint256 balance = balanceOf(_owner);
 
-    if (tokenCount == 0) {
+    if (balance == 0) {
       return new uint256[](0);
     } else {
-      uint256[] memory result = new uint256[](tokenCount);
-      uint256 totalTokens = totalSupply();
-      uint256 resultIndex = 0;
+      uint256[] memory result = new uint256[](balance);
+      uint256 maxTokenId = totalSupply();
+      uint256 idx = 0;
 
       uint256 tokenId;
-      for (tokenId = 1; tokenId <= totalTokens; tokenId++) {
+      for (tokenId = 1; tokenId <= maxTokenId; tokenId++) {
         if (tokenIndexToOwner[tokenId] == _owner) {
-          result[resultIndex] = tokenId;
-          resultIndex++;
+          result[idx] = tokenId;
+          idx++;
         }
       }
     }
