@@ -75,20 +75,16 @@ contract MyNonFungibleToken is ERC721 {
     Transfer(_from, _to, _tokenId);
   }
 
-  function _createToken(address _owner) internal returns (uint256) {
+  function _mint(address _owner) internal returns (uint256 tokenId) {
     Token memory _token = Token({
       mintedBy: _owner,
       mintedAt: uint64(now)
     });
-    uint256 newTokenId = tokens.push(_token) - 1;
+    tokenId = tokens.push(_token) - 1;
 
-    require(newTokenId == uint256(uint32(newTokenId)));
+    Mint(_owner, tokenId);
 
-    Mint(_owner, newTokenId);
-
-    _transfer(0, _owner, newTokenId);
-
-    return newTokenId;
+    _transfer(0, _owner, tokenId);
   }
 
 
@@ -161,7 +157,7 @@ contract MyNonFungibleToken is ERC721 {
   /*** OTHER EXTERNAL FUNCTIONS ***/
 
   function mint() external returns (uint256) {
-    return _createToken(msg.sender);
+    return _mint(msg.sender);
   }
 
   function getToken(uint256 _tokenId) external view returns (address mintedBy, uint64 mintedAt) {
