@@ -57,8 +57,8 @@ contract MyNonFungibleToken is ERC721 {
     return tokenIndexToApproved[_tokenId] == _claimant;
   }
 
-  function _approve(address _approved, uint256 _tokenId) internal {
-    tokenIndexToApproved[_tokenId] = _approved;
+  function _approve(address _to, uint256 _tokenId) internal {
+    tokenIndexToApproved[_tokenId] = _to;
 
     Approval(tokenIndexToOwner[_tokenId], tokenIndexToApproved[_tokenId], _tokenId);
   }
