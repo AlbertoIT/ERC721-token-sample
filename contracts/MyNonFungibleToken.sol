@@ -57,7 +57,7 @@ contract MyNonFungibleToken is ERC721 {
     return tokenIndexToApproved[_tokenId] == _claimant;
   }
 
-  function _approve(uint256 _tokenId, address _approved) internal {
+  function _approve(address _approved, uint256 _tokenId) internal {
     tokenIndexToApproved[_tokenId] = _approved;
 
     Approval(tokenIndexToOwner[_tokenId], tokenIndexToApproved[_tokenId], _tokenId);
@@ -111,7 +111,7 @@ contract MyNonFungibleToken is ERC721 {
   function approve(address _to, uint256 _tokenId) external {
     require(_owns(msg.sender, _tokenId));
 
-    _approve(_tokenId, _to);
+    _approve(_to, _tokenId);
   }
 
   function transfer(address _to, uint256 _tokenId) external {
