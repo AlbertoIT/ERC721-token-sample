@@ -8,10 +8,10 @@ contract MyNonFungibleToken is ERC721 {
   string public constant name = "MyNonFungibleToken";
   string public constant symbol = "MNFT";
 
-  bytes4 constant InterfaceSignature_ERC165 =
+  bytes4 constant InterfaceID_ERC165 =
     bytes4(keccak256('supportsInterface(bytes4)'));
 
-  bytes4 constant InterfaceSignature_ERC721 =
+  bytes4 constant InterfaceID_ERC721 =
     bytes4(keccak256('name()')) ^
     bytes4(keccak256('symbol()')) ^
     bytes4(keccak256('totalSupply()')) ^
@@ -91,7 +91,7 @@ contract MyNonFungibleToken is ERC721 {
   /*** ERC721 IMPLEMENTATION ***/
 
   function supportsInterface(bytes4 _interfaceID) external view returns (bool) {
-    return ((_interfaceID == InterfaceSignature_ERC165) || (_interfaceID == InterfaceSignature_ERC721));
+    return ((_interfaceID == InterfaceID_ERC165) || (_interfaceID == InterfaceID_ERC721));
   }
 
   function totalSupply() public view returns (uint256) {
