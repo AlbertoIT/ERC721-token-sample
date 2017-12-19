@@ -43,8 +43,6 @@ contract MyNonFungibleToken is ERC721 {
   /*** EVENTS ***/
 
   event Mint(address owner, uint256 tokenId);
-  event Transfer(address from, address to, uint256 tokenId);
-  event Approval(address owner, address approved, uint256 tokenId);
 
 
   /*** INTERNAL FUNCTIONS ***/
