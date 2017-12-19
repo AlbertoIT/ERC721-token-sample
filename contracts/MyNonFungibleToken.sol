@@ -74,11 +74,11 @@ contract MyNonFungibleToken is ERC721 {
   }
 
   function _mint(address _owner) internal returns (uint256 tokenId) {
-    Token memory _token = Token({
+    Token memory token = Token({
       mintedBy: _owner,
       mintedAt: uint64(now)
     });
-    tokenId = tokens.push(_token) - 1;
+    tokenId = tokens.push(token) - 1;
 
     Mint(_owner, tokenId);
 
